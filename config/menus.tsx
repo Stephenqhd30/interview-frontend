@@ -17,16 +17,6 @@ export const menus = [
     
   },
   {
-    path: "/banks",
-    name: "题库",
-    icon: <BankOutlined />,
-  },
-  {
-    path: "/questions",
-    name: "题目",
-    icon: <QuestionOutlined />,
-  },
-  {
     path: "/admin",
     name: "管理",
     icon: <CrownOutlined />,

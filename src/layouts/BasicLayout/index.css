@@ -1,0 +1,15 @@
+#basic-layout {
+  height: 100vh;
+  overflow: auto;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  margin-inline-end: 24px;
+}
+
+.input {
+  border-radius: 4px;
+  margin-inline-end: 12px;
+}
