@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.1",
+    "@ant-design/pro-components": "^2.7.15",
     "antd": "^5.20.5",
     "next": "14.2.7",
     "react": "^18",
