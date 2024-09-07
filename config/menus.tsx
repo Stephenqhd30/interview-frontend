@@ -1,11 +1,10 @@
 import { MenuDataItem } from "@ant-design/pro-layout";
 import {
-  BankOutlined,
+  BookOutlined,
   CrownOutlined,
   ExceptionOutlined,
-  HomeOutlined,
-  QuestionOutlined,
-} from "@ant-design/icons";
+  HomeOutlined, QuestionCircleOutlined,
+} from '@ant-design/icons';
 import ACCESS_ENUM from "@/access/accessEnum";
 
 /**
@@ -16,6 +15,16 @@ export const menus = [
     path: "/",
     name: "首页",
     icon: <HomeOutlined />,
+  },
+  {
+    path: "/banks",
+    name: "题库",
+    icon: <BookOutlined />,
+  },
+  {
+    path: "/questions",
+    name: "题库",
+    icon: <QuestionCircleOutlined />,
   },
   {
     path: "/admin",
