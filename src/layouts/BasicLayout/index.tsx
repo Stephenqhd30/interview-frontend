@@ -14,28 +14,28 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
 import { menus } from "../../../config/menus";
+import "./index.css";
+import {RootState} from '@/stores';
+import {useSelector} from 'react-redux';
 
+/**
+ * 搜索框
+ * @constructor
+ */
 const SearchInput = () => {
   const { token } = theme.useToken();
   return (
     <div
       key="SearchOutlined"
       aria-hidden="true"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        marginInlineEnd: 24,
-      }}
+      className={"search-input"}
       onMouseDown={(e) => {
         e.stopPropagation();
         e.preventDefault();
       }}
     >
       <Input
-        style={{
-          borderRadius: 4,
-          marginInlineEnd: 12,
-        }}
+        className={"input"}
         prefix={
           <SearchOutlined
             style={{
@@ -54,17 +54,17 @@ interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * 通用布局
+ * @param props
+ * @constructor
+ */
 const BasicLayout: React.FC<Props> = (props) => {
   const { children } = props;
   const pathname = usePathname();
+  const loginUser = useSelector((state: RootState) => state.loginUser)
   return (
-    <div
-      id="basic-layout"
-      style={{
-        height: "100vh",
-        overflow: "auto",
-      }}
-    >
+    <div id="basic-layout">
       <ProLayout
         layout={"top"}
         title={TITLE}
@@ -73,9 +73,9 @@ const BasicLayout: React.FC<Props> = (props) => {
           pathname,
         }}
         avatarProps={{
-          src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
+          src: loginUser.userAvatar || "/assets/logo.png",
           size: "small",
-          title: "七妮妮",
+          title: loginUser.userName || "面试鸭",
           render: (props, dom) => {
             return (
               <Dropdown
