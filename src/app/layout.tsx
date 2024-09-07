@@ -28,6 +28,7 @@ const InitializeStatus: React.FC<Readonly<{ children: React.ReactNode }>> = ({
     const res = await getLoginUserUsingGet();
     if (res.data) {
       // 更新全局用户状态
+      dispatch(setLoginUser(res.data as API.LoginUserVO));
     } else {
       setTimeout(() => {
         const testUser: API.LoginUserVO = {

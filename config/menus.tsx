@@ -23,7 +23,7 @@ export const menus = [
   },
   {
     path: "/questions",
-    name: "题库",
+    name: "题目",
     icon: <QuestionCircleOutlined />,
   },
   {

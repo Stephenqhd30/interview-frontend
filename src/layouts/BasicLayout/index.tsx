@@ -18,8 +18,8 @@ import {RootState} from '@/stores';
 import { useSelector } from "react-redux";
 import { menus } from "../../../config/menus";
 import getAccessibleMenus from '@/access/menuAccess';
-import MdEditer from '@/components/MdEditer';
-import MdViewer from '@/components/MdViewer';
+import MdViewer from "@/components/MdViewer";
+import MdEditor from "@/components/MdEditor";
 
 /**
  * 搜索框
@@ -136,7 +136,7 @@ const BasicLayout: React.FC<Props> = (props) => {
           </Link>
         )}
       >
-        <MdEditer value={text} onChange={setText}/>
+        <MdEditor value={text} onChange={setText} />
         <MdViewer value={text} />
         {children}
       </ProLayout>

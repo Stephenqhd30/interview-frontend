@@ -1,4 +1,4 @@
-import { Viewer } from "@bytemd/react";
+import { Editor } from "@bytemd/react";
 import gfm from "@bytemd/plugin-gfm";
 import highlight from "@bytemd/plugin-highlight";
 import mediumZoom from "@bytemd/plugin-medium-zoom";
@@ -9,23 +9,31 @@ import "./index.css";
 
 interface Props {
   value?: string;
+  onChange?: (v: string) => void;
+  placeholder?: string;
 }
 
 const plugins = [gfm(), highlight(), mediumZoom(), gemoji()];
 
 /**
- * Markdown 浏览器
+ * Markdown 编辑器
  * @param props
  * @constructor
  */
-const MdViewer = (props: Props) => {
-	const { value = "" } = props;
+const MdEditor = (props: Props) => {
+	const { value = "", onChange, placeholder } = props;
 
   return (
-    <div className="md-viewer">
-      <Viewer value={value} plugins={plugins} />
+    <div className="md-editor">
+      <Editor
+        value={value}
+        placeholder={placeholder}
+        mode="split"
+        plugins={plugins}
+        onChange={onChange}
+      />
     </div>
   );
 };
 
-export default MdViewer;
+export default MdEditor;
