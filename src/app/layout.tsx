@@ -8,6 +8,7 @@ import { Provider, useDispatch } from "react-redux";
 import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
 import { setLoginUser } from "@/stores/loginUser";
+import AccessInitializeStatus from "@/access/AccessInitializeStatus";
 
 /**
  * 全局初始化逻辑
@@ -25,7 +26,7 @@ const InitializeStatus: React.FC<Readonly<{ children: React.ReactNode }>> = ({
    */
   const doInitLoginUser = useCallback(async () => {
     const res = await getLoginUserUsingGet();
-    if (!res.data) {
+    if (res.data) {
       // 更新全局用户状态
     } else {
       setTimeout(() => {
@@ -33,6 +34,7 @@ const InitializeStatus: React.FC<Readonly<{ children: React.ReactNode }>> = ({
           id: 1,
           userName: "测试用户",
           userAvatar: "https://code-nav.cn/logo.png",
+          userRole: "admin",
         };
         dispatch(setLoginUser(testUser));
       }, 3000);
@@ -53,7 +55,9 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <AntdRegistry>
           <Provider store={store}>
             <InitializeStatus>
-              <BasicLayout>{children}</BasicLayout>
+              <BasicLayout>
+                <AccessInitializeStatus>{children}</AccessInitializeStatus>
+              </BasicLayout>
             </InitializeStatus>
           </Provider>
         </AntdRegistry>

@@ -9,14 +9,15 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
-import { GITLAB, LOGO, SUB_TITLE, TITLE } from "@/constants";
+import {GITLAB, LOGO, STEPHEN_AUTHOR, SUB_TITLE, TITLE} from '@/constants';
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
-import { menus } from "../../../config/menus";
 import "./index.css";
 import {RootState} from '@/stores';
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
+import { menus } from "../../../config/menus";
+import getAccessibleMenus from '@/access/menuAccess';
 
 /**
  * 搜索框
@@ -66,6 +67,7 @@ const BasicLayout: React.FC<Props> = (props) => {
   return (
     <div id="basic-layout">
       <ProLayout
+        id={"basic-layout"}
         layout={"top"}
         title={TITLE}
         logo={<Image src={LOGO} height={32} width={32} alt={SUB_TITLE} />}
@@ -73,9 +75,9 @@ const BasicLayout: React.FC<Props> = (props) => {
           pathname,
         }}
         avatarProps={{
-          src: loginUser.userAvatar || "/assets/logo.png",
+          src: loginUser.userAvatar || LOGO,
           size: "small",
-          title: loginUser.userName || "面试鸭",
+          title: loginUser.userName || STEPHEN_AUTHOR,
           render: (props, dom) => {
             return (
               <Dropdown
@@ -122,11 +124,11 @@ const BasicLayout: React.FC<Props> = (props) => {
         onMenuHeaderClick={(e) => console.log(e)}
         // 定义菜单
         menuDataRender={() => {
-          return menus;
+          return getAccessibleMenus(loginUser, menus);
         }}
         // 菜单项如何渲染
         menuItemRender={(item, dom) => (
-          <Link href={item.path || "/welcome"} target={"_self"}>
+          <Link href={item.path || "/"} target={"_self"}>
             {dom}
           </Link>
         )}
