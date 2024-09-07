@@ -29,6 +29,18 @@ export async function deleteTagUsingPost(
   });
 }
 
+/** editTag POST /api/tag/edit */
+export async function editTagUsingPost(body: API.TagEditRequest, options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean_>('/api/tag/edit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** getTagVOById GET /api/tag/get/vo */
 export async function getTagVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
