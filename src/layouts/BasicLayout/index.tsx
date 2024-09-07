@@ -1,7 +1,7 @@
 "use client";
 
 import { ProLayout } from "@ant-design/pro-components";
-import React from "react";
+import React, {useState} from 'react';
 import { Dropdown, Input, theme, Typography } from "antd";
 import {
   GitlabFilled,
@@ -18,6 +18,8 @@ import {RootState} from '@/stores';
 import { useSelector } from "react-redux";
 import { menus } from "../../../config/menus";
 import getAccessibleMenus from '@/access/menuAccess';
+import MdEditer from '@/components/MdEditer';
+import MdViewer from '@/components/MdViewer';
 
 /**
  * 搜索框
@@ -64,6 +66,7 @@ const BasicLayout: React.FC<Props> = (props) => {
   const { children } = props;
   const pathname = usePathname();
   const loginUser = useSelector((state: RootState) => state.loginUser)
+  const [text, setText] = useState<string>("");
   return (
     <div id="basic-layout">
       <ProLayout
@@ -133,6 +136,8 @@ const BasicLayout: React.FC<Props> = (props) => {
           </Link>
         )}
       >
+        <MdEditer value={text} onChange={setText}/>
+        <MdViewer value={text} />
         {children}
       </ProLayout>
     </div>
