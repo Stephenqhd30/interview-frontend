@@ -29,16 +29,6 @@ const InitializeStatus: React.FC<Readonly<{ children: React.ReactNode }>> = ({
     if (res.data) {
       // 更新全局用户状态
       dispatch(setLoginUser(res.data as API.LoginUserVO));
-    } else {
-      setTimeout(() => {
-        const testUser: API.LoginUserVO = {
-          id: 1,
-          userName: "测试用户",
-          userAvatar: "https://code-nav.cn/logo.png",
-          userRole: "admin",
-        };
-        dispatch(setLoginUser(testUser));
-      }, 3000);
     }
   }, []);
 

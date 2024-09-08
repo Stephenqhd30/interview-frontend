@@ -1,25 +1,32 @@
 "use client";
 
 import { ProLayout } from "@ant-design/pro-components";
-import React, {useState} from 'react';
-import { Dropdown, Input, theme, Typography } from "antd";
+import React from "react";
+import { Dropdown, Input, message, theme, Typography } from "antd";
 import {
   GitlabFilled,
   LogoutOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
-import {GITLAB, LOGO, STEPHEN_AUTHOR, SUB_TITLE, TITLE} from '@/constants';
-import { usePathname } from "next/navigation";
+import {
+  GITLAB,
+  LOGO,
+  STEPHEN_AUTHOR,
+  STEPHEN_SUBTITLE,
+  STEPHEN_TITLE,
+} from "@/constants";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
 import "./index.css";
-import {RootState} from '@/stores';
-import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/stores";
+import { useDispatch, useSelector } from "react-redux";
 import { menus } from "../../../config/menus";
-import getAccessibleMenus from '@/access/menuAccess';
-import MdViewer from "@/components/MdViewer";
-import MdEditor from "@/components/MdEditor";
+import getAccessibleMenus from "@/access/menuAccess";
+import { userLogoutUsingPost } from "@/api/userController";
+import { setLoginUser } from "@/stores/loginUser";
+import { DEFAULT_USER } from "@/mock/user";
 
 /**
  * 搜索框
@@ -66,14 +73,32 @@ const BasicLayout: React.FC<Props> = (props) => {
   const { children } = props;
   const pathname = usePathname();
   const loginUser = useSelector((state: RootState) => state.loginUser)
-  const [text, setText] = useState<string>("");
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
+  
+  /**
+   * 用户退出登录
+   */
+  const userLogout = async () => {
+    try {
+      await userLogoutUsingPost();
+      dispatch(setLoginUser(DEFAULT_USER));
+      router.replace("/");
+      message.success("退出登录成功");
+      
+    } catch (error: any) {
+      message.error("操作失败" + error.message);
+    }
+  }
   return (
     <div id="basic-layout">
       <ProLayout
         id={"basic-layout"}
         layout={"top"}
-        title={TITLE}
-        logo={<Image src={LOGO} height={32} width={32} alt={SUB_TITLE} />}
+          title={STEPHEN_TITLE}
+          logo={
+            <Image src={LOGO} height={32} width={32} alt={STEPHEN_SUBTITLE}/>
+          }
         location={{
           pathname,
         }}
@@ -82,6 +107,9 @@ const BasicLayout: React.FC<Props> = (props) => {
           size: "small",
           title: loginUser.userName || STEPHEN_AUTHOR,
           render: (props, dom) => {
+            if (!loginUser.id) {
+              return <div onClick={() => router.push('/user/login')}>{dom}</div>;
+            }
             return (
               <Dropdown
                 menu={{
@@ -92,6 +120,13 @@ const BasicLayout: React.FC<Props> = (props) => {
                       label: "退出登录",
                     },
                   ],
+                  onClick: async (event: { key: React.Key }) => {
+                    const {key} = event;
+                    if (key === 'logout') {
+                      await userLogout();
+                    }
+                  }
+                  
                 }}
               >
                 {dom}
@@ -136,8 +171,6 @@ const BasicLayout: React.FC<Props> = (props) => {
           </Link>
         )}
       >
-        <MdEditor value={text} onChange={setText} />
-        <MdViewer value={text} />
         {children}
       </ProLayout>
     </div>

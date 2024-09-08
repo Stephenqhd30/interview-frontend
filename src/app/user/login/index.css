@@ -1,0 +1,32 @@
+#login {
+  .login-form-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .icon-styles-alipay {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #1677FF;
+  }
+
+  .icon-styles-taobao {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #FF6A10;
+  }
+
+  .icon-styles-weibo {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #1890ff;
+  }
+}

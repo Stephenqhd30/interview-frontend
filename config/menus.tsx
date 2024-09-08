@@ -43,9 +43,44 @@ export const menus = [
       },
     ],
   },
-
   {
-    name: "exception",
+    path: "/user",
+    icon: <CrownOutlined />,
+    children: [
+      {
+        path: "/user",
+        redirect: "/user/login",
+      },
+      {
+        path: "/user/login",
+        name: "登录",
+      },
+      {
+        path: "/user/register",
+        name: "注册",
+      },
+    ],
+  },
+  {
+    path: "/account",
+    icon: <CrownOutlined />,
+    name: "个人页",
+    children: [
+      {
+        path: "/account",
+        redirect: "/account/center",
+      },
+      {
+        path: "/account/center",
+        name: "个人中心",
+      },
+      {
+        path: "/account/setting",
+        name: "个人设置",
+      },
+    ],
+  },
+  {
     path: "/exception",
     icon: <ExceptionOutlined />,
     children: [
