@@ -7,7 +7,7 @@ import BasicLayout from "@/layouts/BasicLayout";
 import { Provider, useDispatch } from "react-redux";
 import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
-import { setLoginUser } from "@/stores/loginUser";
+import { setLoginUser } from "@/stores/user/loginUser";
 import AccessInitializeStatus from "@/access/AccessInitializeStatus";
 
 /**
@@ -26,9 +26,9 @@ const InitializeStatus: React.FC<Readonly<{ children: React.ReactNode }>> = ({
    */
   const doInitLoginUser = useCallback(async () => {
     const res = await getLoginUserUsingGet();
-    if (res.data) {
+    if (res.data?.code === 0 && res.data.data) {
       // 更新全局用户状态
-      dispatch(setLoginUser(res.data as API.LoginUserVO));
+      dispatch(setLoginUser(res.data.data as API.LoginUserVO));
     }
   }, []);
 

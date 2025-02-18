@@ -17,7 +17,7 @@ import { AccountLoginPage, PhoneLoginPage } from "@/app/user/login/components";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/stores";
 import "./index.css";
-import { setLoginUser } from "@/stores/loginUser";
+import { setLoginUser } from "@/stores/user/loginUser";
 import Style from "@/app/user/login/style";
 import { useRouter } from "next/navigation";
 

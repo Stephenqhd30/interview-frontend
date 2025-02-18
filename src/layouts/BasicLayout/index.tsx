@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { menus } from "../../../config/menus";
 import getAccessibleMenus from "@/access/menuAccess";
 import { userLogoutUsingPost } from "@/api/userController";
-import { setLoginUser } from "@/stores/loginUser";
+import { setLoginUser } from "@/stores/user/loginUser";
 import { DEFAULT_USER } from "@/mock/user";
 
 /**
@@ -72,10 +72,10 @@ interface Props {
 const BasicLayout: React.FC<Props> = (props) => {
   const { children } = props;
   const pathname = usePathname();
-  const loginUser = useSelector((state: RootState) => state.loginUser)
+  const loginUser = useSelector((state: RootState) => state.loginUser);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  
+
   /**
    * 用户退出登录
    */
@@ -85,20 +85,26 @@ const BasicLayout: React.FC<Props> = (props) => {
       dispatch(setLoginUser(DEFAULT_USER));
       router.replace("/");
       message.success("退出登录成功");
-      
     } catch (error: any) {
       message.error("操作失败" + error.message);
     }
-  }
+  };
   return (
     <div id="basic-layout">
       <ProLayout
         id={"basic-layout"}
         layout={"top"}
-          title={STEPHEN_TITLE}
-          logo={
-            <Image src={LOGO} height={32} width={32} alt={STEPHEN_SUBTITLE}/>
-          }
+        contentWidth={"Fixed"}
+        token={{
+          pageContainer: {
+            paddingInlinePageContainerContent: 0,
+            paddingBlockPageContainerContent: 0,
+          },
+        }}
+        title={STEPHEN_TITLE}
+        logo={
+          <Image src={LOGO} height={32} width={32} alt={STEPHEN_SUBTITLE} />
+        }
         location={{
           pathname,
         }}
@@ -108,7 +114,9 @@ const BasicLayout: React.FC<Props> = (props) => {
           title: loginUser.userName || STEPHEN_AUTHOR,
           render: (props, dom) => {
             if (!loginUser.id) {
-              return <div onClick={() => router.push('/user/login')}>{dom}</div>;
+              return (
+                <div onClick={() => router.push("/user/login")}>{dom}</div>
+              );
             }
             return (
               <Dropdown
@@ -121,31 +129,17 @@ const BasicLayout: React.FC<Props> = (props) => {
                     },
                   ],
                   onClick: async (event: { key: React.Key }) => {
-                    const {key} = event;
-                    if (key === 'logout') {
+                    const { key } = event;
+                    if (key === "logout") {
                       await userLogout();
                     }
-                  }
-                  
+                  },
                 }}
               >
                 {dom}
               </Dropdown>
             );
           },
-        }}
-        actionsRender={(props) => {
-          if (props.isMobile) return [];
-          return [
-            <SearchInput key="SearchInput" />,
-            <Typography.Link
-              target={"_blank"}
-              href={GITLAB}
-              key={"GitlabFilled"}
-            >
-              <GitlabFilled />
-            </Typography.Link>,
-          ];
         }}
         headerTitleRender={(logo, title) => {
           return (
