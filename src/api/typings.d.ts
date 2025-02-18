@@ -23,15 +23,39 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponsePagePost_ = {
+  type BaseResponsePageQuestion_ = {
     code?: number;
-    data?: PagePost_;
+    data?: PageQuestion_;
     message?: string;
   };
 
-  type BaseResponsePagePostVO_ = {
+  type BaseResponsePageQuestionBank_ = {
     code?: number;
-    data?: PagePostVO_;
+    data?: PageQuestionBank_;
+    message?: string;
+  };
+
+  type BaseResponsePageQuestionBankQuestion_ = {
+    code?: number;
+    data?: PageQuestionBankQuestion_;
+    message?: string;
+  };
+
+  type BaseResponsePageQuestionBankQuestionVO_ = {
+    code?: number;
+    data?: PageQuestionBankQuestionVO_;
+    message?: string;
+  };
+
+  type BaseResponsePageQuestionBankVO_ = {
+    code?: number;
+    data?: PageQuestionBankVO_;
+    message?: string;
+  };
+
+  type BaseResponsePageQuestionVO_ = {
+    code?: number;
+    data?: PageQuestionVO_;
     message?: string;
   };
 
@@ -59,9 +83,21 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponsePostVO_ = {
+  type BaseResponseQuestionBankQuestionVO_ = {
     code?: number;
-    data?: PostVO;
+    data?: QuestionBankQuestionVO;
+    message?: string;
+  };
+
+  type BaseResponseQuestionBankVO_ = {
+    code?: number;
+    data?: QuestionBankVO;
+    message?: string;
+  };
+
+  type BaseResponseQuestionVO_ = {
+    code?: number;
+    data?: QuestionVO;
     message?: string;
   };
 
@@ -89,22 +125,21 @@ declare namespace API {
     message?: string;
   };
 
-  type checkUsingGETParams = {
-    /** echostr */
-    echostr?: string;
-    /** nonce */
-    nonce?: string;
-    /** signature */
-    signature?: string;
-    /** timestamp */
-    timestamp?: string;
-  };
-
   type DeleteRequest = {
     id?: number;
   };
 
-  type getPostVOByIdUsingGETParams = {
+  type getQuestionBankQuestionVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getQuestionBankVOByIdUsingGETParams = {
+    id?: number;
+    needQueryQuestionList?: boolean;
+  };
+
+  type getQuestionVOByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -143,27 +178,79 @@ declare namespace API {
     column?: string;
   };
 
-  type PagePost_ = {
+  type PageQuestion_ = {
     countId?: string;
     current?: number;
     maxLimit?: number;
     optimizeCountSql?: boolean;
     orders?: OrderItem[];
     pages?: number;
-    records?: Post[];
+    records?: Question[];
     searchCount?: boolean;
     size?: number;
     total?: number;
   };
 
-  type PagePostVO_ = {
+  type PageQuestionBank_ = {
     countId?: string;
     current?: number;
     maxLimit?: number;
     optimizeCountSql?: boolean;
     orders?: OrderItem[];
     pages?: number;
-    records?: PostVO[];
+    records?: QuestionBank[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageQuestionBankQuestion_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionBankQuestion[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageQuestionBankQuestionVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionBankQuestionVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageQuestionBankVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionBankVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageQuestionVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionVO[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -221,9 +308,11 @@ declare namespace API {
     total?: number;
   };
 
-  type Post = {
+  type Question = {
+    answer?: string;
     content?: string;
     createTime?: string;
+    editTime?: string;
     favourNum?: number;
     id?: number;
     isDelete?: number;
@@ -234,62 +323,180 @@ declare namespace API {
     userId?: number;
   };
 
-  type PostAddRequest = {
+  type QuestionAddRequest = {
+    answer?: string;
     content?: string;
-    tags?: string[];
+    tagList?: string[];
     title?: string;
   };
 
-  type PostEditRequest = {
-    content?: string;
+  type QuestionBank = {
+    createTime?: string;
+    description?: string;
+    editTime?: string;
     id?: number;
-    tags?: string[];
+    isDelete?: number;
+    picture?: string;
     title?: string;
-  };
-
-  type PostFavourAddRequest = {
-    postId?: number;
-  };
-
-  type PostFavourQueryRequest = {
-    current?: number;
-    pageSize?: number;
-    postQueryRequest?: PostQueryRequest;
-    sortField?: string;
-    sortOrder?: string;
+    updateTime?: string;
     userId?: number;
   };
 
-  type PostQueryRequest = {
-    content?: string;
-    current?: number;
-    favourUserId?: number;
+  type QuestionBankAddRequest = {
+    description?: string;
+    picture?: string;
+    title?: string;
+  };
+
+  type QuestionBankEditRequest = {
+    description?: string;
     id?: number;
+    picture?: string;
+    title?: string;
+  };
+
+  type QuestionBankQueryRequest = {
+    current?: number;
+    description?: string;
+    id?: number;
+    needQueryQuestionList?: boolean;
     notId?: number;
-    orTags?: string[];
     pageSize?: number;
+    picture?: string;
     searchText?: string;
     sortField?: string;
     sortOrder?: string;
-    tags?: string[];
     title?: string;
     userId?: number;
   };
 
-  type PostThumbAddRequest = {
-    postId?: number;
+  type QuestionBankQuestion = {
+    createTime?: string;
+    id?: number;
+    questionBankId?: number;
+    questionId?: number;
+    updateTime?: string;
+    userId?: number;
   };
 
-  type PostUpdateRequest = {
-    content?: string;
+  type QuestionBankQuestionAddRequest = {
+    questionBankId?: number;
+    questionId?: number;
+  };
+
+  type QuestionBankQuestionQueryRequest = {
+    current?: number;
     id?: number;
-    tags?: string[];
+    notId?: number;
+    pageSize?: number;
+    questionBankId?: number;
+    questionId?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type QuestionBankQuestionRemoveRequest = {
+    questionBankId?: number;
+    questionId?: number;
+  };
+
+  type QuestionBankQuestionUpdateRequest = {
+    id?: number;
+    questionBankId?: number;
+    questionId?: number;
+    userId?: number;
+  };
+
+  type QuestionBankQuestionVO = {
+    createTime?: string;
+    id?: number;
+    questionBankId?: number;
+    questionId?: number;
+    updateTime?: string;
+    userId?: number;
+    userVO?: UserVO;
+  };
+
+  type QuestionBankUpdateRequest = {
+    description?: string;
+    id?: number;
+    picture?: string;
     title?: string;
   };
 
-  type PostVO = {
+  type QuestionBankVO = {
+    createTime?: string;
+    description?: string;
+    editTime?: string;
+    id?: number;
+    picture?: string;
+    questionPage?: PageQuestion_;
+    title?: string;
+    updateTime?: string;
+    userId?: number;
+    userVO?: UserVO;
+  };
+
+  type QuestionEditRequest = {
+    answer?: string;
+    content?: string;
+    id?: number;
+    tagList?: string[];
+    title?: string;
+  };
+
+  type QuestionFavourAddRequest = {
+    questionId?: number;
+  };
+
+  type QuestionFavourQueryRequest = {
+    current?: number;
+    pageSize?: number;
+    questionId?: number;
+    questionQueryRequest?: QuestionQueryRequest;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type QuestionQueryRequest = {
+    answer?: string;
+    content?: string;
+    current?: number;
+    favourNum?: number;
+    id?: number;
+    notId?: number;
+    pageSize?: number;
+    questionBankId?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    tagList?: string[];
+    thumbNum?: number;
+    title?: string;
+    userId?: number;
+  };
+
+  type QuestionThumbAddRequest = {
+    questionId?: number;
+  };
+
+  type QuestionUpdateRequest = {
+    answer?: string;
+    content?: string;
+    favourNum?: number;
+    id?: number;
+    tagList?: string[];
+    thumbNum?: number;
+    title?: string;
+  };
+
+  type QuestionVO = {
+    answer?: string;
     content?: string;
     createTime?: string;
+    editTime?: string;
     favourNum?: number;
     hasFavour?: boolean;
     hasThumb?: boolean;
@@ -298,8 +505,8 @@ declare namespace API {
     thumbNum?: number;
     title?: string;
     updateTime?: string;
-    user?: UserVO;
     userId?: number;
+    userVO?: UserVO;
   };
 
   type Tag = {
@@ -319,15 +526,11 @@ declare namespace API {
     tagName?: string;
   };
 
-  type TagEditRequest = {
-    id?: number;
-    tagName?: string;
-  };
-
   type TagQueryRequest = {
     current?: number;
     id?: number;
     isParent?: number;
+    notId?: number;
     pageSize?: number;
     parentId?: number;
     sortField?: string;
@@ -363,8 +566,6 @@ declare namespace API {
     editTime?: string;
     id?: number;
     isDelete?: number;
-    mpOpenId?: string;
-    unionId?: string;
     updateTime?: string;
     userAccount?: string;
     userAvatar?: string;
@@ -397,11 +598,6 @@ declare namespace API {
     userProfile?: string;
   };
 
-  type userLoginByWxOpenUsingGETParams = {
-    /** code */
-    code: string;
-  };
-
   type UserLoginRequest = {
     userAccount?: string;
     userPassword?: string;
@@ -410,11 +606,9 @@ declare namespace API {
   type UserQueryRequest = {
     current?: number;
     id?: number;
-    mpOpenId?: string;
     pageSize?: number;
     sortField?: string;
     sortOrder?: string;
-    unionId?: string;
     userEmail?: string;
     userGender?: number;
     userName?: string;
@@ -444,8 +638,6 @@ declare namespace API {
     createTime?: string;
     editTime?: string;
     id?: number;
-    mpOpenId?: string;
-    unionId?: string;
     updateTime?: string;
     userAvatar?: string;
     userEmail?: string;
