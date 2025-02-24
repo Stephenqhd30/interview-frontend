@@ -2,7 +2,11 @@ import { Button, Result } from "antd";
 import React from "react";
 import Link from "next/link";
 
-const NoFoundPage: React.FC = () => (
+/**
+ * 404无法访问页面
+ * @constructor
+ */
+const NotFoundPage: React.FC = () => (
   <Result
     status="404"
     title="404"
@@ -14,4 +18,4 @@ const NoFoundPage: React.FC = () => (
     }
   />
 );
-export default NoFoundPage;
+export default NotFoundPage;

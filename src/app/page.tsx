@@ -1,16 +1,32 @@
-"use client"
+"use client";
 
-import { PageContainer } from "@ant-design/pro-components";
+import React from "react";
+import { Col, Row } from "antd";
+import UserAvatarCard from "@/components/GlobalUser/UserAvatarCard";
+import { useSelector } from "react-redux";
+import { RootState } from "@/stores";
+import {PageContainer, ProCard} from '@ant-design/pro-components';
 
-/**
- * 主页
- * @constructor
- */
-const HomePage = () => {
+const HomePage: React.FC = () => {
+  const loginUser = useSelector((state: RootState) => state.loginUser);
+
   return (
-    <PageContainer>
-      <h2>这是我的主页</h2>
+    <PageContainer title={false} breadcrumb={undefined}>
+      <Row>
+        <Col span={12}>
+          <ProCard>
+            Grtsinry43’s Blog Nothing but enthusiasm brightens up the endless
+            years. 总之岁月漫长，然而值得等待
+          </ProCard>
+        </Col>
+        <Col span={12}>
+          <ProCard>
+            <UserAvatarCard user={loginUser} />
+          </ProCard>
+        </Col>
+      </Row>
     </PageContainer>
   );
 };
+
 export default HomePage;

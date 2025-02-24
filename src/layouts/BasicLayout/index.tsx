@@ -2,15 +2,10 @@
 
 import { ProLayout } from "@ant-design/pro-components";
 import React from "react";
-import { Dropdown, Input, message, theme, Typography } from "antd";
-import {
-  GitlabFilled,
-  LogoutOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { Dropdown, message } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import {
-  GITLAB,
   LOGO,
   STEPHEN_AUTHOR,
   STEPHEN_SUBTITLE,
@@ -23,42 +18,9 @@ import "./index.css";
 import { AppDispatch, RootState } from "@/stores";
 import { useDispatch, useSelector } from "react-redux";
 import { menus } from "../../../config/menus";
-import getAccessibleMenus from "@/access/menuAccess";
 import { userLogoutUsingPost } from "@/api/userController";
 import { setLoginUser } from "@/stores/user/loginUser";
 import { DEFAULT_USER } from "@/mock/user";
-
-/**
- * 搜索框
- * @constructor
- */
-const SearchInput = () => {
-  const { token } = theme.useToken();
-  return (
-    <div
-      key="SearchOutlined"
-      aria-hidden="true"
-      className={"search-input"}
-      onMouseDown={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-      }}
-    >
-      <Input
-        className={"input"}
-        prefix={
-          <SearchOutlined
-            style={{
-              color: token.colorTextLightSolid,
-            }}
-          />
-        }
-        placeholder="搜索题目"
-        variant="borderless"
-      />
-    </div>
-  );
-};
 
 interface Props {
   children: React.ReactNode;
@@ -156,7 +118,7 @@ const BasicLayout: React.FC<Props> = (props) => {
         onMenuHeaderClick={(e) => console.log(e)}
         // 定义菜单
         menuDataRender={() => {
-          return getAccessibleMenus(loginUser, menus);
+          return menus;
         }}
         // 菜单项如何渲染
         menuItemRender={(item, dom) => (

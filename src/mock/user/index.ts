@@ -1,9 +1,8 @@
-// 默认用户
-import ACCESS_ENUM from '@/access/accessEnum';
+import { UserRoleEnum } from "@/enums/UserRoleEnum";
 
 export const DEFAULT_USER: API.LoginUserVO = {
-	userName: "未登录",
-	userAvatar: "/assets/notLoginUser.png",
-	userRole: ACCESS_ENUM.NOT_LOGIN,
-	userProfile: "该用户很懒未设置简介"
-}
+  userName: "未登录",
+  userAvatar: "/assets/notLoginUser.png",
+  userRole: UserRoleEnum.USER,
+  userProfile: "该用户很懒未设置简介",
+};

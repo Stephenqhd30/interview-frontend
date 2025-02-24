@@ -1,7 +1,11 @@
 import { Button, Result } from "antd";
 import Link from "next/link";
 
-const ForbiddenPage = () => (
+/**
+ * 403无权限页面
+ * @constructor
+ */
+const NoAuthPage = () => (
   <Result
     status="403"
     title="403"
@@ -13,4 +17,4 @@ const ForbiddenPage = () => (
     }
   />
 );
-export default ForbiddenPage;
+export default NoAuthPage;

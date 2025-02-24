@@ -8,7 +8,6 @@ import { Provider, useDispatch } from "react-redux";
 import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
 import { setLoginUser } from "@/stores/user/loginUser";
-import AccessInitializeStatus from "@/access/AccessInitializeStatus";
 
 /**
  * 全局初始化逻辑
@@ -25,14 +24,13 @@ const InitializeStatus: React.FC<Readonly<{ children: React.ReactNode }>> = ({
    * 全局初始数，有单词调用的代码，都可以写到这里
    */
   const doInitLoginUser = useCallback(async () => {
-    const res = await getLoginUserUsingGet();
-    if (res.data?.code === 0 && res.data.data) {
+    const res: any = await getLoginUserUsingGet();
+    if (res.code === 0 && res.data) {
       // 更新全局用户状态
-      dispatch(setLoginUser(res.data.data as API.LoginUserVO));
+      dispatch(setLoginUser(res.data as API.LoginUserVO));
     }
   }, []);
 
-  //'测试用户'
   useEffect(() => {
     doInitLoginUser();
   }, []);
@@ -46,9 +44,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <AntdRegistry>
           <Provider store={store}>
             <InitializeStatus>
-              <BasicLayout>
-                <AccessInitializeStatus>{children}</AccessInitializeStatus>
-              </BasicLayout>
+              <BasicLayout>{children}</BasicLayout>
             </InitializeStatus>
           </Provider>
         </AntdRegistry>

@@ -5,7 +5,6 @@ import {
   ExceptionOutlined,
   HomeOutlined, QuestionCircleOutlined,
 } from '@ant-design/icons';
-import ACCESS_ENUM from "@/access/accessEnum";
 
 /**
  * 菜单列表
@@ -25,23 +24,6 @@ export const menus = [
     path: "/questions",
     name: "题目",
     icon: <QuestionCircleOutlined />,
-  },
-  {
-    path: "/admin",
-    name: "管理",
-    icon: <CrownOutlined />,
-    access: ACCESS_ENUM.ADMIN,
-    children: [
-      {
-        path: "/admin",
-        redirect: "/admin/user",
-      },
-      {
-        path: "/admin/user",
-        name: "用户管理",
-        access: ACCESS_ENUM.ADMIN,
-      },
-    ],
   },
   {
     path: "/user",

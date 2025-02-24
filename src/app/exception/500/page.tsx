@@ -2,6 +2,10 @@ import { Button, Result } from "antd";
 import Link from "next/link";
 import React from "react";
 
+/**
+ * 500服务异常页面
+ * @constructor
+ */
 const ServiceErrorPage = () => (
   <Result
     status="500"
