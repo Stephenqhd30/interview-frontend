@@ -25,7 +25,7 @@ const Style = () => {
       "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
     backgroundSize: "100% 100%",
   };
-  
+
   const iconStyles: CSSProperties = {
     display: "flex",
     justifyContent: "center",
@@ -36,7 +36,7 @@ const Style = () => {
     border: "1px solid " + token.colorPrimaryBorder,
     borderRadius: "50%",
   };
-  
+
   const dividerStyle: CSSProperties = {
     color: token.colorTextPlaceholder,
     fontWeight: "normal",

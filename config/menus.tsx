@@ -3,8 +3,9 @@ import {
   BookOutlined,
   CrownOutlined,
   ExceptionOutlined,
-  HomeOutlined, QuestionCircleOutlined,
-} from '@ant-design/icons';
+  HomeOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
 
 /**
  * 菜单列表
@@ -14,16 +15,6 @@ export const menus = [
     path: "/",
     name: "首页",
     icon: <HomeOutlined />,
-  },
-  {
-    path: "/banks",
-    name: "题库",
-    icon: <BookOutlined />,
-  },
-  {
-    path: "/questions",
-    name: "题目",
-    icon: <QuestionCircleOutlined />,
   },
   {
     path: "/user",
@@ -44,23 +35,14 @@ export const menus = [
     ],
   },
   {
-    path: "/account",
+    path: "/account/center",
     icon: <CrownOutlined />,
-    name: "个人页",
-    children: [
-      {
-        path: "/account",
-        redirect: "/account/center",
-      },
-      {
-        path: "/account/center",
-        name: "个人中心",
-      },
-      {
-        path: "/account/setting",
-        name: "个人设置",
-      },
-    ],
+    name: "个人中心",
+  },
+  {
+    path: "/account/setting",
+    icon: <CrownOutlined />,
+    name: "个人设置",
   },
   {
     path: "/exception",

@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useCallback, useEffect } from "react";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import BasicLayout from "@/layouts/BasicLayout";
 import { Provider, useDispatch } from "react-redux";
 import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
 import { setLoginUser } from "@/stores/user/loginUser";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 /**
  * 全局初始化逻辑

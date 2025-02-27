@@ -5,7 +5,7 @@ import request from "@/request";
 /** doQuestionFavour POST /api/questionFavour/ */
 export async function doQuestionFavourUsingPost(
   body: API.QuestionFavourAddRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseInt_>("/api/questionFavour/", {
     method: "POST",
@@ -20,7 +20,7 @@ export async function doQuestionFavourUsingPost(
 /** listFavourQuestionByPage POST /api/questionFavour/list/page */
 export async function listFavourQuestionByPageUsingPost(
   body: API.QuestionFavourQueryRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
   return request<API.BaseResponsePageQuestionVO_>(
     "/api/questionFavour/list/page",
@@ -31,14 +31,14 @@ export async function listFavourQuestionByPageUsingPost(
       },
       data: body,
       ...(options || {}),
-    }
+    },
   );
 }
 
 /** listMyFavourQuestionByPage POST /api/questionFavour/my/list/page */
 export async function listMyFavourQuestionByPageUsingPost(
   body: API.QuestionQueryRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
   return request<API.BaseResponsePageQuestionVO_>(
     "/api/questionFavour/my/list/page",
@@ -49,6 +49,6 @@ export async function listMyFavourQuestionByPageUsingPost(
       },
       data: body,
       ...(options || {}),
-    }
+    },
   );
 }

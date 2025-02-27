@@ -9,7 +9,7 @@ import Image from "next/image";
 import { RegisterPage } from "@/app/user/register/components";
 import GlobalFooter from "@/components/GlobalFooter";
 import "./index.css";
-import Style from '@/app/user/register/style';
+import Style from "@/app/user/register/style";
 
 const Login: React.FC = () => {
   const [redirected, setRedirected] = useState(false); // 控制重定向状态
@@ -58,7 +58,9 @@ const Login: React.FC = () => {
           containerStyle={{
             backdropFilter: "blur(4px)",
           }}
-          logo={<Image alt="logo" height={44} width={44} src="/assets/logo.png" />}
+          logo={
+            <Image alt="logo" height={44} width={44} src="/assets/logo.png" />
+          }
           title={STEPHEN_TITLE}
           subTitle={STEPHEN_SUBTITLE}
           initialValues={{

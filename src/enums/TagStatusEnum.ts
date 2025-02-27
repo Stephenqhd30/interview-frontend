@@ -11,11 +11,11 @@ export enum TagStatusEnum {
  */
 export const tagStatus = {
   [TagStatusEnum.NOT_IS_PARENT]: {
-    text: '不是父标签',
-    value: TagStatusEnum.NOT_IS_PARENT
+    text: "不是父标签",
+    value: TagStatusEnum.NOT_IS_PARENT,
   },
   [TagStatusEnum.IS_PARENT]: {
-    text: '是父标签',
-    value: TagStatusEnum.IS_PARENT
-  }
-}
+    text: "是父标签",
+    value: TagStatusEnum.IS_PARENT,
+  },
+};

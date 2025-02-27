@@ -10,6 +10,7 @@ import * as questionFavourController from "./questionFavourController";
 import * as questionThumbController from "./questionThumbController";
 import * as tagController from "./tagController";
 import * as userController from "./userController";
+
 export default {
   fileController,
   questionController,

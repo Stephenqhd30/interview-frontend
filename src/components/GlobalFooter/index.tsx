@@ -1,13 +1,13 @@
 import React from "react";
 import { DefaultFooter } from "@ant-design/pro-layout";
-import { GitlabOutlined } from "@ant-design/icons";
+import { GithubOutlined, GitlabOutlined } from "@ant-design/icons";
 import {
   GITHUB,
   GITLAB,
   STEPHEN_AUTHOR,
   STEPHEN_BLOG,
-  STEPHEN_DEFAULT_MESSAGE
-} from '@/constants';
+  STEPHEN_DEFAULT_MESSAGE,
+} from "@/constants";
 
 import "./index.css";
 
@@ -31,7 +31,7 @@ const GlobalFooter: React.FC = () => {
         },
         {
           key: "Gitlab",
-          title: <GitlabOutlined /> ,
+          title: <GitlabOutlined />,
           href: GITLAB,
           blankTarget: true,
         },

@@ -1,0 +1,21 @@
+.logoNode {
+  display: flex;
+  height: 72px;
+  align-items: center;
+  justify-content: start;
+  padding: 0 24px;
+  box-sizing: border-box;
+
+  img {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+  }
+
+  span {
+    display: inline-block;
+    margin: 0 8px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}

@@ -1,5 +1,3 @@
-"use client";
-
 import { ProLayout } from "@ant-design/pro-components";
 import React from "react";
 import { Dropdown, message } from "antd";
@@ -56,18 +54,13 @@ const BasicLayout: React.FC<Props> = (props) => {
       <ProLayout
         id={"basic-layout"}
         layout={"top"}
-        contentWidth={"Fixed"}
-        token={{
-          pageContainer: {
-            paddingInlinePageContainerContent: 0,
-            paddingBlockPageContainerContent: 0,
-          },
-        }}
+        contentWidth={"Fluid"}
         title={STEPHEN_TITLE}
         logo={
           <Image src={LOGO} height={32} width={32} alt={STEPHEN_SUBTITLE} />
         }
         location={{
+          // @ts-ignore
           pathname,
         }}
         avatarProps={{
@@ -115,7 +108,6 @@ const BasicLayout: React.FC<Props> = (props) => {
         footerRender={() => {
           return <GlobalFooter key={"globalFooter"} />;
         }}
-        onMenuHeaderClick={(e) => console.log(e)}
         // 定义菜单
         menuDataRender={() => {
           return menus;

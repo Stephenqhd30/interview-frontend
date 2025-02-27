@@ -1,6 +1,6 @@
 import React from "react";
 import { StatisticCard } from "@ant-design/pro-card";
-import {Avatar, Image, Typography} from 'antd';
+import { Avatar, Typography } from "antd";
 
 interface Props {
   user: API.UserVO;
@@ -33,13 +33,7 @@ const UserAvatarCard: React.FC<Props> = (props) => {
           fontSize: 13,
         },
       }}
-      chart={
-        <Avatar
-          size={48}
-          src={user.userAvatar}
-          alt={user.userName}
-        />
-      }
+      chart={<Avatar size={48} src={user.userAvatar} alt={user.userName} />}
       chartPlacement="left"
     />
   );

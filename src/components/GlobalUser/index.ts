@@ -1,5 +1,3 @@
-import UserAvatarCard from '@/components/GlobalUser/UserAvatarCard';
+import UserAvatarCard from "@/components/GlobalUser/UserAvatarCard";
 
-export {
-	UserAvatarCard,
-}
+export { UserAvatarCard };
