@@ -1,11 +1,5 @@
-import { MenuDataItem } from "@ant-design/pro-layout";
-import {
-  BookOutlined,
-  CrownOutlined,
-  ExceptionOutlined,
-  HomeOutlined,
-  QuestionCircleOutlined,
-} from "@ant-design/icons";
+import {MenuDataItem} from '@ant-design/pro-layout';
+import {CrownOutlined, ExceptionOutlined, HomeOutlined} from '@ant-design/icons';
 
 /**
  * 菜单列表

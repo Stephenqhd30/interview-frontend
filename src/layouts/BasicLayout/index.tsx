@@ -1,7 +1,5 @@
 import { ProLayout } from "@ant-design/pro-components";
 import React from "react";
-import { Dropdown, message } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import {
   LOGO,
@@ -13,12 +11,10 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
 import "./index.css";
-import { AppDispatch, RootState } from "@/stores";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/stores";
+import { useSelector } from "react-redux";
 import { menus } from "../../../config/menus";
-import { userLogoutUsingPost } from "@/api/userController";
-import { setLoginUser } from "@/stores/user/loginUser";
-import { DEFAULT_USER } from "@/mock/user";
+import { AvatarDropdown } from "@/components/GlobalHeader";
 
 interface Props {
   children: React.ReactNode;
@@ -33,26 +29,20 @@ const BasicLayout: React.FC<Props> = (props) => {
   const { children } = props;
   const pathname = usePathname();
   const loginUser = useSelector((state: RootState) => state.loginUser);
-  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
-  /**
-   * 用户退出登录
-   */
-  const userLogout = async () => {
-    try {
-      await userLogoutUsingPost();
-      dispatch(setLoginUser(DEFAULT_USER));
-      router.replace("/");
-      message.success("退出登录成功");
-    } catch (error: any) {
-      message.error("操作失败" + error.message);
-    }
-  };
+  // 判断是否为登录页面
+  const isLoginPage =
+    pathname === "/user/login" || pathname === "/user/register";
+
+  // 如果是登录页面，不渲染布局，只渲染 children 内容
+  if (isLoginPage) {
+    return <>{children}</>;
+  }
+
   return (
     <div id="basic-layout">
       <ProLayout
-        id={"basic-layout"}
         layout={"top"}
         contentWidth={"Fluid"}
         title={STEPHEN_TITLE}
@@ -73,27 +63,7 @@ const BasicLayout: React.FC<Props> = (props) => {
                 <div onClick={() => router.push("/user/login")}>{dom}</div>
               );
             }
-            return (
-              <Dropdown
-                menu={{
-                  items: [
-                    {
-                      key: "logout",
-                      icon: <LogoutOutlined />,
-                      label: "退出登录",
-                    },
-                  ],
-                  onClick: async (event: { key: React.Key }) => {
-                    const { key } = event;
-                    if (key === "logout") {
-                      await userLogout();
-                    }
-                  },
-                }}
-              >
-                {dom}
-              </Dropdown>
-            );
+            return <AvatarDropdown currentUser={loginUser} />;
           },
         }}
         headerTitleRender={(logo, title) => {
